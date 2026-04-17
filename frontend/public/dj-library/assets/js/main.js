@@ -70,17 +70,33 @@
   // --- Skin picker ---
   function initSkinPicker() {
     const cards = document.querySelectorAll('[data-skin-value]');
-    if (!cards.length) return;
-    const current = localStorage.getItem('djlib-skin') || 'neon';
-    cards.forEach(c => c.classList.toggle('active', c.dataset.skinValue === current));
-    cards.forEach(c => {
-      c.addEventListener('click', () => {
-        const v = c.dataset.skinValue;
-        localStorage.setItem('djlib-skin', v);
-        document.documentElement.dataset.skin = v;
-        cards.forEach(x => x.classList.toggle('active', x.dataset.skinValue === v));
+    if (cards.length) {
+      const current = localStorage.getItem('djlib-skin') || 'neon';
+      cards.forEach(c => c.classList.toggle('active', c.dataset.skinValue === current));
+      cards.forEach(c => {
+        c.addEventListener('click', () => {
+          const v = c.dataset.skinValue;
+          localStorage.setItem('djlib-skin', v);
+          document.documentElement.dataset.skin = v;
+          cards.forEach(x => x.classList.toggle('active', x.dataset.skinValue === v));
+        });
       });
-    });
+    }
+
+    // --- Mode picker (dark/light) ---
+    const modes = document.querySelectorAll('[data-mode-value]');
+    if (modes.length) {
+      const current = localStorage.getItem('djlib-mode') || 'dark';
+      modes.forEach(c => c.classList.toggle('active', c.dataset.modeValue === current));
+      modes.forEach(c => {
+        c.addEventListener('click', () => {
+          const v = c.dataset.modeValue;
+          localStorage.setItem('djlib-mode', v);
+          document.documentElement.dataset.mode = v;
+          modes.forEach(x => x.classList.toggle('active', x.dataset.modeValue === v));
+        });
+      });
+    }
   }
 
   // --- Track view toggle (table/cards) ---

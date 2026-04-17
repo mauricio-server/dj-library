@@ -24,8 +24,57 @@
           </div>
         </div>
 
-        <!-- Appearance / Skins -->
+        <!-- Mode: Dark / Light -->
         <div class="card anim-up anim-up-1" style="margin-bottom: 18px;">
+          <div class="card-header">
+            <div>
+              <h3>Appearance · Mode</h3>
+              <div class="sub">Choose between dark and light interface. Works with every skin.</div>
+            </div>
+          </div>
+          <div class="skin-grid" data-testid="mode-picker" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+
+            <div class="skin-card" data-mode-value="dark" data-testid="mode-dark">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+                <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#0a0a0c 0%,#16161c 100%);display:grid;place-items:center;border:1px solid #24242e;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </div>
+                <div style="display:flex;gap:5px;">
+                  <div style="width:26px;height:46px;border-radius:6px;background:#0a0a0c;border:1px solid #24242e;"></div>
+                  <div style="width:26px;height:46px;border-radius:6px;background:#16161c;border:1px solid #24242e;"></div>
+                  <div style="width:26px;height:46px;border-radius:6px;background:#1d1d25;border:1px solid #32323e;"></div>
+                </div>
+              </div>
+              <div class="sk-name">Dark</div>
+              <div class="sk-desc">Deep blacks · Night-ready · Default</div>
+            </div>
+
+            <div class="skin-card" data-mode-value="light" data-testid="mode-light">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+                <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#ffffff 0%,#f0f0f3 100%);display:grid;place-items:center;border:1px solid #e4e4e9;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </div>
+                <div style="display:flex;gap:5px;">
+                  <div style="width:26px;height:46px;border-radius:6px;background:#f6f6f8;border:1px solid #e4e4e9;"></div>
+                  <div style="width:26px;height:46px;border-radius:6px;background:#ffffff;border:1px solid #e4e4e9;"></div>
+                  <div style="width:26px;height:46px;border-radius:6px;background:#f0f0f3;border:1px solid #d4d4dc;"></div>
+                </div>
+              </div>
+              <div class="sk-name">Light</div>
+              <div class="sk-desc">Off-white · High contrast · Daytime</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Appearance / Skins -->
+        <div class="card anim-up anim-up-2" style="margin-bottom: 18px;">
           <div class="card-header">
             <div>
               <h3>Appearance · Skins</h3>

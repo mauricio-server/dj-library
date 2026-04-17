@@ -97,6 +97,107 @@
   --accent-grad-soft: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(132, 204, 22, 0.2) 100%);
 }
 
+/* ---------- LIGHT MODE ----------
+   Surfaces & text invert while accents (skins) remain intact.
+   Uses warm off-white surfaces with neutral slate text — optimal WCAG AA contrast.
+*/
+[data-mode="light"] {
+  --bg:             #f6f6f8;
+  --bg-grid:        #ececef;
+  --bg-elevated:    #ffffff;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f3f3f6;
+  --bg-inset:       #f0f0f3;
+  --border:         #e4e4e9;
+  --border-strong:  #d4d4dc;
+  --border-subtle:  #ececf0;
+
+  --text:       #1a1a22;
+  --text-muted: #52525c;
+  --text-dim:   #8a8a96;
+  --text-faint: #b9b9c2;
+
+  /* status backgrounds slightly stronger so they stay visible on white */
+  --have-bg:     rgba(34, 197, 94, 0.14);
+  --missing-bg:  rgba(239, 68, 68, 0.14);
+  --possible-bg: rgba(245, 158, 11, 0.18);
+  --info-bg:     rgba(14, 165, 233, 0.14);
+  --info:        #0284c7;
+  --have:        #16a34a;
+  --missing:     #dc2626;
+  --possible:    #d97706;
+}
+
+/* Darken accent-soft a hair in light mode for readability on white */
+[data-mode="light"][data-skin="neon"]     { --accent-soft: rgba(192, 38, 211, 0.14); --accent-glow: rgba(192, 38, 211, 0.28); }
+[data-mode="light"][data-skin="electric"] { --accent-soft: rgba(6, 182, 212, 0.14);  --accent-glow: rgba(6, 182, 212, 0.28); }
+[data-mode="light"][data-skin="nebula"]   { --accent-soft: rgba(139, 92, 246, 0.14); --accent-glow: rgba(139, 92, 246, 0.28); }
+[data-mode="light"][data-skin="sunset"]   { --accent-soft: rgba(249, 115, 22, 0.14); --accent-glow: rgba(249, 115, 22, 0.28); }
+[data-mode="light"][data-skin="matrix"]   { --accent-soft: rgba(16, 185, 129, 0.14); --accent-glow: rgba(16, 185, 129, 0.28); }
+
+/* Dim the ambient body glows + grid overlay for light mode */
+[data-mode="light"] body::before { opacity: 0.32; }
+[data-mode="light"] body::after  {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+}
+
+/* Sidebar + topbar: swap gradient for flat light surface */
+[data-mode="light"] .sidebar {
+  background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(246,246,248,0.92) 100%);
+  border-right: 1px solid var(--border);
+}
+[data-mode="light"] .topbar {
+  background: rgba(255,255,255,0.82);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Metric card glow softer in light mode */
+[data-mode="light"] .metric::before { opacity: 0.05; }
+
+/* Stronger card shadow rather than glow on light bg */
+[data-mode="light"] .card,
+[data-mode="light"] .metric,
+[data-mode="light"] .table-wrap,
+[data-mode="light"] .hrow-card,
+[data-mode="light"] .track-card,
+[data-mode="light"] .crate-card {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 1px rgba(15, 23, 42, 0.02);
+}
+
+/* Buttons: adjust ghost/secondary contrast */
+[data-mode="light"] .btn-secondary {
+  background: #ffffff;
+  border-color: var(--border);
+}
+[data-mode="light"] .btn-secondary:hover { background: var(--bg-card-hover); }
+[data-mode="light"] .btn-ghost:hover    { background: var(--bg-inset); }
+
+/* Inputs & textareas on white */
+[data-mode="light"] .input,
+[data-mode="light"] .textarea,
+[data-mode="light"] .topbar-search input {
+  background: #ffffff;
+}
+[data-mode="light"] .filter-input,
+[data-mode="light"] .view-toggle,
+[data-mode="light"] .dropdown-menu,
+[data-mode="light"] .kbd {
+  background: #ffffff;
+}
+
+/* Table header keeps the "inset" look */
+[data-mode="light"] .data-table thead th { background: #fafafc; }
+[data-mode="light"] .data-table tbody tr:hover { background: #fafafc; }
+
+/* Scrollbar tuning */
+[data-mode="light"] *::-webkit-scrollbar-thumb { background: #d4d4dc; border-color: var(--bg); }
+[data-mode="light"] *::-webkit-scrollbar-thumb:hover { background: #a8a8b0; }
+
+/* Modal backdrop lighter */
+[data-mode="light"] .modal-backdrop { background: rgba(15, 15, 20, 0.45); }
+
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }

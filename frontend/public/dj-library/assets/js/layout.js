@@ -139,10 +139,12 @@
     `;
   }
 
-  // Apply skin from localStorage
+  // Apply skin + mode from localStorage
   function applySkin() {
     const skin = localStorage.getItem('djlib-skin') || 'neon';
+    const mode = localStorage.getItem('djlib-mode') || 'dark';
     document.documentElement.dataset.skin = skin;
+    document.documentElement.dataset.mode = mode;
   }
 
   // Mount layout

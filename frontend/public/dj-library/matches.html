@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matches · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-matches">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Matches</h2>
+            <p class="sub">Comparison results from <strong style="color:var(--text)">Warehouse Techno</strong> vs local library · 3 types: exact, clean, fuzzy.</p>
+          </div>
+          <div class="kit-row">
+            <button class="btn btn-secondary" data-testid="matches-refresh-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              Re-run
+            </button>
+            <button class="btn btn-primary" data-testid="matches-export-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Summary metric cards -->
+        <div class="metrics anim-up anim-up-1">
+          <div class="metric" data-testid="matches-metric-total">
+            <div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <div class="metric-label">Total Compared</div>
+            <div class="metric-value">20</div>
+            <span class="metric-trend up">All processed</span>
+          </div>
+          <div class="metric" data-testid="matches-metric-have" style="border-color: rgba(34,197,94,0.2);">
+            <div class="metric-icon" style="background: var(--have-bg); color: var(--have);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="metric-label">Have</div>
+            <div class="metric-value" style="color: var(--have);">12</div>
+            <span class="metric-trend up">60% coverage</span>
+          </div>
+          <div class="metric" data-testid="matches-metric-missing" style="border-color: rgba(239,68,68,0.2);">
+            <div class="metric-icon" style="background: var(--missing-bg); color: var(--missing);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div class="metric-label">Missing</div>
+            <div class="metric-value" style="color: var(--missing);">3</div>
+            <span class="metric-trend down">add to wishlist</span>
+          </div>
+          <div class="metric" data-testid="matches-metric-possible" style="border-color: rgba(245,158,11,0.2);">
+            <div class="metric-icon" style="background: var(--possible-bg); color: var(--possible);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="metric-label">Possible Match</div>
+            <div class="metric-value" style="color: var(--possible);">5</div>
+            <span class="metric-trend up">needs review</span>
+          </div>
+        </div>
+
+        <!-- Examples bar -->
+        <div class="grid-3 anim-up anim-up-2" style="margin-bottom: 18px;">
+          <div class="card">
+            <div class="kit-row" style="margin-bottom: 10px;">
+              <span class="badge badge-have">EXACT</span>
+              <span class="mono text-dim" style="font-size: 11px;">100%</span>
+            </div>
+            <div style="font-size: 13.5px;"><strong>Fisher</strong> – Losing It</div>
+            <div class="text-dim" style="font-size: 12px; margin-top: 6px;">Wanted line matches library track 1:1</div>
+          </div>
+          <div class="card">
+            <div class="kit-row" style="margin-bottom: 10px;">
+              <span class="badge badge-have">CLEAN</span>
+              <span class="mono text-dim" style="font-size: 11px;">94-98%</span>
+            </div>
+            <div style="font-size: 13.5px;"><strong>Chris Lake</strong> – Turn Off Lights <span class="text-dim">→</span> Turn Off The Lights</div>
+            <div class="text-dim" style="font-size: 12px; margin-top: 6px;">Small differences (articles, punctuation)</div>
+          </div>
+          <div class="card">
+            <div class="kit-row" style="margin-bottom: 10px;">
+              <span class="badge badge-possible">FUZZY</span>
+              <span class="mono text-dim" style="font-size: 11px;">75-90%</span>
+            </div>
+            <div style="font-size: 13.5px;"><strong>Nina Kraviz</strong> – Skyscraper <span class="text-dim">→</span> Skyscrapers</div>
+            <div class="text-dim" style="font-size: 12px; margin-top: 6px;">Close but needs manual review</div>
+          </div>
+        </div>
+
+        <div class="table-wrap anim-up anim-up-3">
+          <div class="filter-bar">
+            <label class="filter-input">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+              <select data-testid="matches-filter-status"><option>All Statuses</option><option>Have</option><option>Missing</option><option>Possible</option></select>
+            </label>
+            <label class="filter-input">
+              <span class="text-dim">Match type</span>
+              <select><option>All</option><option>Exact</option><option>Clean</option><option>Fuzzy</option></select>
+            </label>
+            <label class="filter-input">
+              <span class="text-dim">Min score</span>
+              <select><option>0%</option><option>50%</option><option>75%</option><option>90%</option></select>
+            </label>
+            <div class="tt-spacer"></div>
+            <div class="topbar-search" style="max-width: 260px; margin: 0;">
+              <span class="search-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input type="text" placeholder="Search matches…" data-testid="matches-search"/>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table" data-testid="matches-table">
+              <thead>
+                <tr>
+                  <th>Wanted Artist</th>
+                  <th>Wanted Track</th>
+                  <th>Status</th>
+                  <th>Local Match</th>
+                  <th>Confidence</th>
+                  <th>Type</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="matches-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <div class="pag-info">Showing <strong>1–20</strong> of <strong>20</strong> matches</div>
+            <div class="pages">
+              <button class="page-btn" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'matches', title: 'Matches', crumb: 'Compare · Warehouse Techno' });
+
+      const rows = DJ_MATCHES.map((m, i) => {
+        const scoreBar = m.score > 0 ? `
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="top-bar" style="width: 80px;"><div class="top-bar-fill" style="width:${m.score}%; background: ${m.status === 'have' ? 'var(--have)' : m.status === 'possible' ? 'var(--possible)' : 'var(--missing)'};"></div></div>
+            <span class="mono" style="font-size: 12px; color: var(--text);">${m.score}%</span>
+          </div>
+        ` : `<span class="text-dim mono" style="font-size: 12px;">—</span>`;
+        return `
+          <tr data-testid="match-row-${i}">
+            <td><strong>${m.wanted_artist}</strong></td>
+            <td class="muted">${m.wanted_track}</td>
+            <td><span class="badge badge-${m.status}"><span class="badge-dot"></span>${m.status}</span></td>
+            <td class="muted">${m.match}</td>
+            <td>${scoreBar}</td>
+            <td>${m.type !== 'none' ? `<span class="badge badge-neutral">${m.type.toUpperCase()}</span>` : '<span class="text-dim">—</span>'}</td>
+            <td>
+              <div class="dropdown">
+                <button class="icon-btn" data-dropdown-toggle aria-label="Actions">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                </button>
+                <div class="dropdown-menu">
+                  <div class="dropdown-item">Open in Tracks</div>
+                  <div class="dropdown-item">Confirm as match</div>
+                  <div class="dropdown-item">Add to wishlist</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+      document.getElementById('matches-tbody').innerHTML = rows;
+    });
+  </script>
+</body>
+</html>

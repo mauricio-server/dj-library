@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · DJ Library</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a855f7' stroke-width='2'><path d='M3 18v-6a9 9 0 0 1 18 0v6'/><path d='M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z'/></svg>">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-dashboard">
+
+        <!-- Hero -->
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Good evening, DJ Producer</h2>
+            <p class="sub">Your library feels sharp tonight · 1,284 matches across 12 wanted lists. Ready to curate your next set?</p>
+          </div>
+          <div class="kit-row">
+            <button class="btn btn-secondary" data-testid="action-scan">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              <span>Scan Library</span>
+            </button>
+            <button class="btn btn-primary" data-testid="action-new-list" onclick="location.href='wanted-list.html'">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>New Wanted List</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="metrics" id="metrics-grid"></div>
+
+        <!-- Quick Actions -->
+        <div class="card anim-up anim-up-2" style="margin-bottom: 18px;">
+          <div class="card-header">
+            <div>
+              <h3>Quick Actions</h3>
+              <div class="sub">Fast paths into the most used workflows</div>
+            </div>
+          </div>
+          <div class="quick-actions" id="quick-actions"></div>
+        </div>
+
+        <!-- Main grid: table + top genres + activity -->
+        <div class="grid-2 anim-up anim-up-3" style="margin-bottom: 18px;">
+          <div class="stack">
+            <div class="card" style="padding: 0;">
+              <div class="table-toolbar">
+                <div>
+                  <h3 style="font-size:15px;font-weight:600;">Recent Tracks</h3>
+                  <div style="font-size:12px;color:var(--text-dim);margin-top:2px;">Last 8 added to your library</div>
+                </div>
+                <div class="tt-spacer"></div>
+                <a href="tracks.html" class="btn btn-ghost btn-sm">View all →</a>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Track</th>
+                      <th>Genre</th>
+                      <th>BPM</th>
+                      <th>Key</th>
+                      <th>Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-tracks-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Tracks per decade -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Tracks per Decade</h3>
+                  <div class="sub">Library distribution over time</div>
+                </div>
+                <span class="badge badge-accent">4,837 total</span>
+              </div>
+              <div class="bars-chart" id="decade-chart"></div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <!-- Latest matches -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Latest Matches</h3>
+                  <div class="sub">From recent comparisons</div>
+                </div>
+                <a href="matches.html" class="btn btn-ghost btn-sm">All →</a>
+              </div>
+              <div class="activity-list" id="latest-matches"></div>
+            </div>
+
+            <!-- Top genres -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Top Genres</h3>
+                  <div class="sub">By number of tracks</div>
+                </div>
+              </div>
+              <div class="top-list" id="top-genres"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="card anim-up anim-up-4">
+          <div class="card-header">
+            <div>
+              <h3>Recent Activity</h3>
+              <div class="sub">All events across your library</div>
+            </div>
+            <button class="btn btn-ghost btn-sm">View log</button>
+          </div>
+          <div class="activity-list" id="activity-feed"></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'dashboard', title: 'Dashboard', crumb: 'Home · Overview' });
+      const I = DJ_ICONS;
+
+      // Metrics
+      const m = DJ_METRICS;
+      const cells = [
+        { label: 'Total Tracks',   value: m.tracks.toLocaleString(), trend: '+142 this week', up: true, icon: I.music, testid: 'metric-tracks' },
+        { label: 'Artists',        value: m.artists, trend: '+8', up: true, icon: I.headphones, testid: 'metric-artists' },
+        { label: 'Matches',        value: m.matched.toLocaleString(), trend: '+24%', up: true, icon: I.check, testid: 'metric-matches' },
+        { label: 'Missing',        value: m.missing, trend: '-12', up: false, icon: I.x, testid: 'metric-missing' },
+        { label: 'Possible Match', value: m.possible, trend: 'review queue', up: true, icon: I.zap, testid: 'metric-possible' },
+        { label: 'Library Size',   value: m.size, trend: '24 GB free', up: true, icon: I.folder, testid: 'metric-size' },
+      ];
+      document.getElementById('metrics-grid').innerHTML = cells.map(c => `
+        <div class="metric" data-testid="${c.testid}">
+          <div class="metric-icon">${c.icon()}</div>
+          <div class="metric-label">${c.label}</div>
+          <div class="metric-value">${c.value}</div>
+          <span class="metric-trend ${c.up ? 'up' : 'down'}">${c.up ? I.trendUp() : I.trendDown()}<span>${c.trend}</span></span>
+        </div>
+      `).join('');
+
+      // Quick actions
+      document.getElementById('quick-actions').innerHTML = [
+        { title: 'Import Wanted List', sub: 'Paste or upload a TXT', icon: I.upload, href: 'wanted-list.html', testid: 'qa-import' },
+        { title: 'Browse Tracks',      sub: 'Filter & organize',     icon: I.music,  href: 'tracks.html',      testid: 'qa-browse' },
+        { title: 'Review Matches',     sub: '147 missing · 96 possible', icon: I.target || I.zap, href: 'matches.html', testid: 'qa-review' },
+        { title: 'Manage Crates',      sub: '18 crates',             icon: I.folder, href: 'crates.html',      testid: 'qa-crates' },
+      ].map(q => `
+        <a href="${q.href}" class="qa" data-testid="${q.testid}">
+          <div class="qa-icon">${q.icon()}</div>
+          <div class="qa-body">
+            <div class="qa-title">${q.title}</div>
+            <div class="qa-sub">${q.sub}</div>
+          </div>
+        </a>
+      `).join('');
+
+      // Recent tracks (first 8)
+      document.getElementById('recent-tracks-body').innerHTML = DJ_TRACKS.slice(0, 8).map(t => {
+        const cover = coverUrl(t.id);
+        const grad = coverClass(t.id);
+        return `
+          <tr>
+            <td>
+              <div class="track-cell">
+                <div class="album-art ${grad}"><img src="${cover}" alt="" onerror="this.style.display='none'"/></div>
+                <div class="track-info">
+                  <span class="track-title">${t.track}</span>
+                  <span class="track-artist">${t.artist}</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge badge-neutral">${t.genre}</span></td>
+            <td class="mono">${t.bpm}</td>
+            <td class="mono muted">${t.key}</td>
+            <td class="mono muted">${t.duration}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Decade chart
+      const maxDec = Math.max(...DJ_DECADES.map(d => d.value));
+      document.getElementById('decade-chart').innerHTML = DJ_DECADES.map(d => {
+        const h = Math.round((d.value / maxDec) * 100);
+        return `
+          <div class="bar" style="height:${h}%;">
+            <div class="bar-value">${d.value.toLocaleString()}</div>
+            <div class="bar-label">${d.label}</div>
+          </div>
+        `;
+      }).join('');
+
+      // Latest matches
+      document.getElementById('latest-matches').innerHTML = DJ_MATCHES.slice(0, 6).map(m => {
+        const cls = m.status === 'have' ? 'have' : m.status === 'missing' ? 'missing' : 'possible';
+        const ico = m.status === 'have' ? I.check() : m.status === 'missing' ? I.x() : I.zap();
+        return `
+          <div class="activity-item">
+            <div class="activity-icon ${cls}">${ico}</div>
+            <div class="activity-body">
+              <div class="activity-text"><strong>${m.wanted_artist}</strong> <span class="muted">–</span> ${m.wanted_track}</div>
+              <div class="activity-meta">${m.match !== '—' ? 'Matched → ' + m.match : 'No match in library'} ${m.score ? '· ' + m.score + '%' : ''}</div>
+            </div>
+            <span class="badge badge-${m.status}">${m.status}</span>
+          </div>
+        `;
+      }).join('');
+
+      // Top genres
+      const maxG = Math.max(...DJ_GENRES.map(g => g.count));
+      document.getElementById('top-genres').innerHTML = DJ_GENRES.slice(0, 6).map((g, i) => `
+        <div class="top-row">
+          <span class="top-rank">#${i + 1}</span>
+          <span class="top-label">${g.name}</span>
+          <div class="top-bar"><div class="top-bar-fill" style="width:${(g.count / maxG) * 100}%"></div></div>
+          <span class="top-value">${g.count}</span>
+        </div>
+      `).join('');
+
+      // Activity feed
+      document.getElementById('activity-feed').innerHTML = DJ_ACTIVITY.map(a => {
+        const cls = a.type === 'have' ? 'have' : a.type === 'missing' ? 'missing' : a.type === 'possible' ? 'possible' : '';
+        const ico = a.icon === 'check' ? I.check() : a.icon === 'x' ? I.x() : a.icon === 'zap' ? I.zap() : a.icon === 'upload' ? I.upload() : I.refresh();
+        return `
+          <div class="activity-item">
+            <div class="activity-icon ${cls}">${ico}</div>
+            <div class="activity-body">
+              <div class="activity-text">${a.text}</div>
+              <div class="activity-meta">${a.meta}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracks · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-tracks">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Tracks Library</h2>
+            <p class="sub">4,837 tracks indexed across 24 genres. Filter, search and organize your collection.</p>
+          </div>
+          <div class="kit-row">
+            <div class="view-toggle" data-testid="view-toggle">
+              <button data-view="table" class="active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                Table
+              </button>
+              <button data-view="cards">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                Cards
+              </button>
+            </div>
+            <button class="btn btn-secondary" data-testid="export-tracks-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export
+            </button>
+            <button class="btn btn-primary" data-testid="add-tracks-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Tracks
+            </button>
+          </div>
+        </div>
+
+        <!-- Main search -->
+        <div class="card anim-up anim-up-1" style="padding: 18px; margin-bottom: 18px;">
+          <div class="topbar-search" style="max-width: none; margin: 0;">
+            <span class="search-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input type="text" placeholder="Search by track, artist, remix, key, BPM…" data-testid="tracks-search-input"/>
+          </div>
+        </div>
+
+        <!-- Tracks container -->
+        <div class="table-wrap anim-up anim-up-2">
+          <div class="filter-bar" data-testid="filter-bar">
+            <label class="filter-input">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+              <select data-testid="filter-genre"><option>All Genres</option><option>Tech House</option><option>Techno</option><option>Deep House</option><option>Drum & Bass</option><option>Hip-Hop</option></select>
+            </label>
+            <label class="filter-input">
+              <span class="text-dim">Year</span>
+              <select data-testid="filter-year"><option>All</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option></select>
+            </label>
+            <label class="filter-input">
+              <span class="text-dim">BPM</span>
+              <select data-testid="filter-bpm"><option>All</option><option>100-120</option><option>120-128</option><option>128-135</option><option>170-180</option></select>
+            </label>
+            <label class="filter-input">
+              <span class="text-dim">Key</span>
+              <select data-testid="filter-key"><option>All Keys</option><option>A min</option><option>D min</option><option>G min</option><option>F# min</option></select>
+            </label>
+            <label class="filter-input">
+              <span class="text-dim">Format</span>
+              <select data-testid="filter-format"><option>All</option><option>MP3</option><option>WAV</option><option>FLAC</option></select>
+            </label>
+            <div class="tt-spacer"></div>
+            <div class="kit-row">
+              <span class="chip">Genre: Tech House <span class="x">×</span></span>
+              <span class="chip">BPM: 120-128 <span class="x">×</span></span>
+              <span class="chip">Format: WAV <span class="x">×</span></span>
+            </div>
+          </div>
+
+          <!-- Table view -->
+          <div class="table-scroll" data-view-panel="table">
+            <table class="data-table" data-testid="tracks-table">
+              <thead>
+                <tr>
+                  <th style="min-width: 260px;">Track</th>
+                  <th>Remix</th>
+                  <th>Genre</th>
+                  <th>Year</th>
+                  <th>BPM</th>
+                  <th>Key</th>
+                  <th>Format</th>
+                  <th>Duration</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tracks-tbody"></tbody>
+            </table>
+          </div>
+
+          <!-- Cards view -->
+          <div data-view-panel="cards" style="display:none;">
+            <div class="tracks-grid" id="tracks-grid"></div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <div class="pag-info">Showing <strong>1–25</strong> of <strong>4,837</strong> tracks</div>
+            <div class="pages">
+              <button class="page-btn" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">4</button>
+              <span class="page-btn" style="pointer-events:none">…</span>
+              <button class="page-btn">194</button>
+              <button class="page-btn" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'tracks', title: 'Tracks', crumb: 'Library · Tracks' });
+      document.getElementById('tracks-tbody').innerHTML = DJ_TRACKS.map(t => DJRender.trackRow(t)).join('');
+      document.getElementById('tracks-grid').innerHTML = DJ_TRACKS.map(t => DJRender.trackCard(t)).join('');
+    });
+  </script>
+</body>
+</html>

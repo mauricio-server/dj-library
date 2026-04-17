@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duplicates · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-duplicates">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Duplicates</h2>
+            <p class="sub">Tracks with multiple copies in your library · review and clean up to save space.</p>
+          </div>
+          <div class="kit-row">
+            <button class="btn btn-secondary">Re-scan</button>
+            <button class="btn btn-danger">Remove selected</button>
+          </div>
+        </div>
+
+        <div class="metrics anim-up anim-up-1">
+          <div class="metric">
+            <div class="metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </div>
+            <div class="metric-label">Duplicate Tracks</div>
+            <div class="metric-value">34</div>
+            <span class="metric-trend down">6.2 GB wasted</span>
+          </div>
+          <div class="metric">
+            <div class="metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="metric-label">Extra Copies</div>
+            <div class="metric-value">52</div>
+            <span class="metric-trend down">files redundant</span>
+          </div>
+          <div class="metric">
+            <div class="metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="metric-label">Auto-resolvable</div>
+            <div class="metric-value">21</div>
+            <span class="metric-trend up">ready to clean</span>
+          </div>
+        </div>
+
+        <div class="table-wrap anim-up anim-up-2">
+          <div class="table-toolbar">
+            <div class="tt-title">Duplicate tracks</div>
+            <div class="tt-spacer"></div>
+            <label class="filter-input">
+              <span class="text-dim">Sort</span>
+              <select><option>By copies</option><option>By name</option><option>By format diff</option></select>
+            </label>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Track</th>
+                  <th>Copies</th>
+                  <th>Formats</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="duplicates-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'duplicates', title: 'Duplicates', crumb: 'Organization · Duplicates' });
+      document.getElementById('duplicates-tbody').innerHTML = DJ_DUPLICATES.map((d, i) => `
+        <tr data-testid="duplicate-row-${i}">
+          <td>
+            <div class="track-cell">
+              <div class="album-art ${coverClass(d.cover)}"><img src="${coverUrl(d.cover)}" alt="" onerror="this.style.display='none'"/></div>
+              <div class="track-info">
+                <span class="track-title">${d.track}</span>
+                <span class="track-artist">${d.artist}</span>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge badge-possible">${d.copies} copies</span></td>
+          <td>
+            <div class="kit-row" style="margin: 0;">
+              ${d.files.map(f => `<span class="badge badge-neutral">${f}</span>`).join('')}
+            </div>
+          </td>
+          <td>
+            <div class="kit-row" style="margin: 0; justify-content: flex-end;">
+              <button class="btn btn-ghost btn-sm">Compare</button>
+              <button class="btn btn-danger btn-sm">Keep best</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

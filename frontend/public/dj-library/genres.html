@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genres · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-genres">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Genres</h2>
+            <p class="sub">Explore your library by genre · 24 distinct styles across 4,837 tracks.</p>
+          </div>
+          <div class="kit-row">
+            <button class="btn btn-secondary">Merge genres</button>
+            <button class="btn btn-primary">+ New genre</button>
+          </div>
+        </div>
+
+        <div class="tracks-grid anim-up anim-up-1" style="padding: 0;" id="genres-grid"></div>
+
+        <div class="card anim-up anim-up-2" style="margin-top: 22px;">
+          <div class="card-header">
+            <div>
+              <h3>Distribution</h3>
+              <div class="sub">Top 12 genres by track count</div>
+            </div>
+          </div>
+          <div class="top-list" id="genre-distribution"></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'genres', title: 'Genres', crumb: 'Organization · Genres' });
+      const max = Math.max(...DJ_GENRES.map(g => g.count));
+      document.getElementById('genres-grid').innerHTML = DJ_GENRES.map((g, i) => `
+        <a class="track-card" data-testid="genre-card-${i}" href="tracks.html" style="cursor: pointer;">
+          <div class="cover" style="background: linear-gradient(135deg, ${g.color}, ${DJ_GENRES[(i+3)%DJ_GENRES.length].color}); display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 20px; text-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+            ${g.name.slice(0,2).toUpperCase()}
+          </div>
+          <div class="t-name">${g.name}</div>
+          <div class="t-artist">${g.count} tracks</div>
+        </a>
+      `).join('');
+
+      document.getElementById('genre-distribution').innerHTML = DJ_GENRES.map((g, i) => `
+        <div class="top-row">
+          <span class="top-rank">#${i+1}</span>
+          <span class="top-label" style="display:flex;align-items:center;gap:8px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:${g.color};"></span>
+            ${g.name}
+          </span>
+          <div class="top-bar"><div class="top-bar-fill" style="width:${(g.count/max)*100}%; background: ${g.color};"></div></div>
+          <span class="top-value">${g.count}</span>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

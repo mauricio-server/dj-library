@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crates · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <style>
+    .crate-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); overflow: hidden; transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); cursor: pointer; }
+    .crate-card:hover { transform: translateY(-3px); border-color: var(--border-strong); }
+    .crate-mosaic { display: grid; grid-template-columns: 1fr 1fr; aspect-ratio: 1.25; }
+    .crate-mosaic .tile { background-size: cover; background-position: center; background-color: var(--bg-inset); position: relative; }
+    .crate-mosaic .tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%); }
+    .crate-body { padding: 14px 16px; }
+    .crate-name { font-weight: 700; font-size: 15px; }
+    .crate-meta { font-size: 12px; color: var(--text-dim); margin-top: 4px; display: flex; gap: 10px; align-items: center; }
+  </style>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-crates">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Crates</h2>
+            <p class="sub">Organize your sets by vibe, venue or moment · 18 crates and counting.</p>
+          </div>
+          <div class="kit-row">
+            <button class="btn btn-secondary">Import from Rekordbox</button>
+            <button class="btn btn-primary">+ New crate</button>
+          </div>
+        </div>
+
+        <div class="tracks-grid anim-up anim-up-1" style="padding: 0; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));" id="crates-grid"></div>
+
+      </div>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'crates', title: 'Crates', crumb: 'Organization · Crates' });
+      document.getElementById('crates-grid').innerHTML = DJ_CRATES.map((c, i) => `
+        <div class="crate-card" data-testid="crate-card-${i}">
+          <div class="crate-mosaic">
+            ${c.covers.map(id => `<div class="tile" style="background-image: url('${coverUrl(id)}');"></div>`).join('')}
+          </div>
+          <div class="crate-body">
+            <div class="crate-name">${c.name}</div>
+            <div class="crate-meta">
+              <span>${c.tracks} tracks</span>
+              <span style="width: 3px; height: 3px; border-radius: 50%; background: var(--text-faint);"></span>
+              <span>${c.updated}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

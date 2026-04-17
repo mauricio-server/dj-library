@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-settings">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Settings</h2>
+            <p class="sub">Customize the look & feel of your DJ Library workspace.</p>
+          </div>
+        </div>
+
+        <!-- Appearance / Skins -->
+        <div class="card anim-up anim-up-1" style="margin-bottom: 18px;">
+          <div class="card-header">
+            <div>
+              <h3>Appearance · Skins</h3>
+              <div class="sub">Pick the accent palette used across the whole app. Your choice is stored locally.</div>
+            </div>
+          </div>
+          <div class="skin-grid" data-testid="skin-picker">
+
+            <div class="skin-card" data-skin-value="neon" data-testid="skin-neon">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="skin-swatches">
+                <div class="skin-swatch" style="background: linear-gradient(135deg, #a855f7, #ec4899);"></div>
+                <div class="skin-swatch" style="background: #c026d3;"></div>
+                <div class="skin-swatch" style="background: #a855f7;"></div>
+              </div>
+              <div class="sk-name">Neon</div>
+              <div class="sk-desc">Purple + Magenta · Default</div>
+            </div>
+
+            <div class="skin-card" data-skin-value="electric" data-testid="skin-electric">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="skin-swatches">
+                <div class="skin-swatch" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);"></div>
+                <div class="skin-swatch" style="background: #06b6d4;"></div>
+                <div class="skin-swatch" style="background: #3b82f6;"></div>
+              </div>
+              <div class="sk-name">Electric</div>
+              <div class="sk-desc">Cyan + Blue</div>
+            </div>
+
+            <div class="skin-card" data-skin-value="nebula" data-testid="skin-nebula">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="skin-swatches">
+                <div class="skin-swatch" style="background: linear-gradient(135deg, #8b5cf6, #22d3ee);"></div>
+                <div class="skin-swatch" style="background: #8b5cf6;"></div>
+                <div class="skin-swatch" style="background: #22d3ee;"></div>
+              </div>
+              <div class="sk-name">Nebula</div>
+              <div class="sk-desc">Purple + Cyan</div>
+            </div>
+
+            <div class="skin-card" data-skin-value="sunset" data-testid="skin-sunset">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="skin-swatches">
+                <div class="skin-swatch" style="background: linear-gradient(135deg, #f97316, #ec4899);"></div>
+                <div class="skin-swatch" style="background: #f97316;"></div>
+                <div class="skin-swatch" style="background: #ec4899;"></div>
+              </div>
+              <div class="sk-name">Sunset</div>
+              <div class="sk-desc">Orange + Pink</div>
+            </div>
+
+            <div class="skin-card" data-skin-value="matrix" data-testid="skin-matrix">
+              <div class="skin-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="skin-swatches">
+                <div class="skin-swatch" style="background: linear-gradient(135deg, #10b981, #84cc16);"></div>
+                <div class="skin-swatch" style="background: #10b981;"></div>
+                <div class="skin-swatch" style="background: #84cc16;"></div>
+              </div>
+              <div class="sk-name">Matrix</div>
+              <div class="sk-desc">Green + Lime</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="grid-2 anim-up anim-up-2" style="margin-bottom: 18px;">
+          <!-- Library settings -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3>Library</h3>
+                <div class="sub">Scan behavior and file handling</div>
+              </div>
+            </div>
+            <div class="top-list">
+              <div class="top-row">
+                <span class="top-label">Auto-scan on startup</span>
+                <label class="switch"><input type="checkbox" checked/><span class="slider"></span></label>
+              </div>
+              <div class="top-row">
+                <span class="top-label">Read ID3 tags</span>
+                <label class="switch"><input type="checkbox" checked/><span class="slider"></span></label>
+              </div>
+              <div class="top-row">
+                <span class="top-label">Detect duplicates by audio hash</span>
+                <label class="switch"><input type="checkbox"/><span class="slider"></span></label>
+              </div>
+              <div class="top-row">
+                <span class="top-label">Watch folder for changes</span>
+                <label class="switch"><input type="checkbox" checked/><span class="slider"></span></label>
+              </div>
+            </div>
+            <div style="height: 14px;"></div>
+            <label class="label">Library path</label>
+            <input class="input mono" value="/Music/DJ-Library" />
+          </div>
+
+          <!-- Matching -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3>Matching Rules</h3>
+                <div class="sub">Thresholds for comparing wanted lists</div>
+              </div>
+            </div>
+            <div class="top-list">
+              <div class="top-row"><span class="top-label">Exact match threshold</span><span class="top-value mono">100%</span></div>
+              <div class="top-row"><span class="top-label">Clean match threshold</span><span class="top-value mono">94%</span></div>
+              <div class="top-row"><span class="top-label">Fuzzy match threshold</span><span class="top-value mono">75%</span></div>
+              <div class="top-row"><span class="top-label">Ignore parentheses</span><label class="switch"><input type="checkbox" checked/><span class="slider"></span></label></div>
+              <div class="top-row"><span class="top-label">Normalize accents</span><label class="switch"><input type="checkbox" checked/><span class="slider"></span></label></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layout preferences -->
+        <div class="card anim-up anim-up-3" style="margin-bottom: 18px;">
+          <div class="card-header">
+            <div>
+              <h3>Layout</h3>
+              <div class="sub">Sidebar and navigation preferences</div>
+            </div>
+          </div>
+          <div class="top-list">
+            <div class="top-row"><span class="top-label">Collapse sidebar by default</span><label class="switch"><input type="checkbox"/><span class="slider"></span></label></div>
+            <div class="top-row"><span class="top-label">Show tooltips when collapsed</span><label class="switch"><input type="checkbox" checked/><span class="slider"></span></label></div>
+            <div class="top-row"><span class="top-label">Compact tables</span><label class="switch"><input type="checkbox"/><span class="slider"></span></label></div>
+          </div>
+        </div>
+
+        <div class="alert alert-info anim-up anim-up-4">
+          <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div><strong>Static preview.</strong> Settings are saved locally in your browser (localStorage) for skin preferences. Full persistence will arrive with the backend integration phase.</div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'settings', title: 'Settings', crumb: 'System · Preferences' });
+    });
+  </script>
+</body>
+</html>

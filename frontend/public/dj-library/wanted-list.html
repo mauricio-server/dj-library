@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-skin="neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanted Lists · DJ Library</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/layout.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <div class="mobile-overlay"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <header class="topbar" id="topbar"></header>
+      <div class="page" data-testid="page-wanted">
+
+        <div class="page-hero anim-up">
+          <div>
+            <h2>Wanted Lists</h2>
+            <p class="sub">Paste a list of tracks in the format <code class="mono" style="color:var(--accent-2)">Artist - Track</code>, then compare against your library to find what you have, what's missing, and possible matches.</p>
+          </div>
+        </div>
+
+        <div class="grid-2 anim-up anim-up-1">
+          <div class="stack">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>New Wanted List</h3>
+                  <div class="sub">Paste one track per line · format: Artist - Track</div>
+                </div>
+                <span class="badge badge-accent"><span id="wanted-valid-counter">0</span> valid</span>
+              </div>
+
+              <label class="label">List Name</label>
+              <input class="input" placeholder="e.g. Closing Set @ Warehouse" data-testid="wanted-name-input" value="Warehouse Night · Feb 26" />
+
+              <div style="height: 16px;"></div>
+
+              <label class="label">Tracks</label>
+              <textarea class="textarea" id="wanted-textarea" data-testid="wanted-textarea" placeholder="Charlotte de Witte - Selected&#10;Fisher - Losing It&#10;Tale Of Us - Another Day&#10;Carl Cox - Pure&#10;Bicep - Apricots">Charlotte de Witte - Selected
+Fisher - Losing It
+Tale Of Us - Another Day
+Carl Cox - Pure
+Bicep - Apricots
+Peggy Gou - It Makes You Forget
+Amelie Lens - Hypnotized
+Boris Brejcha - Gravity
+Dom Dolla - Miracle Maker
+Kölsch - Grey</textarea>
+
+              <div class="kit-row" style="margin-top: 16px; justify-content: space-between;">
+                <div class="text-dim" style="font-size: 12.5px;">
+                  <span class="mono"><span id="wanted-counter">0</span></span> lines total
+                </div>
+                <div class="kit-row">
+                  <button class="btn btn-ghost" data-testid="wanted-clear-btn" onclick="document.getElementById('wanted-textarea').value=''; document.getElementById('wanted-textarea').dispatchEvent(new Event('input'));">Clear</button>
+                  <button class="btn btn-secondary" data-testid="wanted-preview-btn" data-modal-open="preview-modal">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Preview
+                  </button>
+                  <button class="btn btn-primary" data-testid="wanted-compare-btn" onclick="location.href='matches.html'">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                    Import & Compare
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info" data-testid="wanted-info-alert">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <div>
+                <strong>Tip:</strong> You can paste directly from a tracklist, Rekordbox export, or Shazam history.
+                DJ Library auto-trims whitespace and normalizes separators.
+              </div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <!-- Example block -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Valid Format</h3>
+                  <div class="sub">Example of a well-formed list</div>
+                </div>
+              </div>
+              <div class="mono" style="background: var(--bg-inset); padding: 14px; border-radius: 10px; font-size: 12.5px; line-height: 1.9; color: var(--text-muted); border: 1px solid var(--border-subtle);">
+                <div><span style="color: var(--accent-2)">Charlotte de Witte</span> <span style="color:var(--text-dim)">-</span> Selected</div>
+                <div><span style="color: var(--accent-2)">Fisher</span> <span style="color:var(--text-dim)">-</span> Losing It</div>
+                <div><span style="color: var(--accent-2)">Tale Of Us</span> <span style="color:var(--text-dim)">-</span> Another Day</div>
+                <div><span style="color: var(--accent-2)">Carl Cox</span> <span style="color:var(--text-dim)">-</span> Pure <span style="color:var(--text-dim)">(Extended Mix)</span></div>
+              </div>
+              <div style="height: 14px;"></div>
+              <div style="font-size: 12px; color: var(--text-dim); line-height: 1.6;">
+                ✓ One track per line<br>
+                ✓ Separator: <code>-</code> (space on both sides)<br>
+                ✓ Remix info in parentheses is supported<br>
+                ✓ Case-insensitive comparison
+              </div>
+            </div>
+
+            <!-- Stats of this list -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Comparison Preview</h3>
+                  <div class="sub">Projected results</div>
+                </div>
+              </div>
+              <div class="top-list">
+                <div class="top-row"><span class="badge badge-have">Have</span><span class="top-label">Projected matches in library</span><span class="top-value mono">6</span></div>
+                <div class="top-row"><span class="badge badge-possible">Possible</span><span class="top-label">Fuzzy matches (&gt;75%)</span><span class="top-value mono">2</span></div>
+                <div class="top-row"><span class="badge badge-missing">Missing</span><span class="top-label">No local match found</span><span class="top-value mono">2</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="card anim-up anim-up-2" style="margin-top: 18px; padding: 0;">
+          <div class="table-toolbar">
+            <div>
+              <h3 style="font-size:15px;font-weight:600;">Previous Lists</h3>
+              <div style="font-size:12px;color:var(--text-dim);margin-top:2px;">History of imports and their comparison results</div>
+            </div>
+            <div class="tt-spacer"></div>
+            <button class="btn btn-ghost btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              Refresh
+            </button>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table" data-testid="wanted-history-table">
+              <thead>
+                <tr>
+                  <th>List Name</th>
+                  <th>Tracks</th>
+                  <th>Have</th>
+                  <th>Missing</th>
+                  <th>Possible</th>
+                  <th>Created</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="wanted-history-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Preview modal -->
+  <div class="modal-backdrop" id="preview-modal">
+    <div class="modal" role="dialog">
+      <div class="modal-head">
+        <div>
+          <h3 style="font-size:16px;font-weight:700;">Preview Parsed List</h3>
+          <div style="font-size:12px;color:var(--text-dim);margin-top:3px;">Lines detected and parsed successfully</div>
+        </div>
+        <button class="icon-btn" data-modal-close aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-success" style="margin-bottom: 14px;">
+          <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>10 valid lines</strong> detected, ready to import.</div>
+        </div>
+        <div class="top-list">
+          <div class="top-row"><span class="top-label">Charlotte de Witte <span class="text-dim">– Selected</span></span><span class="badge badge-have">valid</span></div>
+          <div class="top-row"><span class="top-label">Fisher <span class="text-dim">– Losing It</span></span><span class="badge badge-have">valid</span></div>
+          <div class="top-row"><span class="top-label">Tale Of Us <span class="text-dim">– Another Day</span></span><span class="badge badge-have">valid</span></div>
+          <div class="top-row"><span class="top-label">Carl Cox <span class="text-dim">– Pure</span></span><span class="badge badge-have">valid</span></div>
+          <div class="top-row"><span class="top-label">Bicep <span class="text-dim">– Apricots</span></span><span class="badge badge-have">valid</span></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" data-modal-close>Close</button>
+        <button class="btn btn-primary" onclick="location.href='matches.html'">Import & Compare</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      DJLayout.mount({ active: 'wanted', title: 'Wanted Lists', crumb: 'Compare · Import' });
+
+      const body = DJ_WANTED_LISTS.map(w => `
+        <tr data-testid="wanted-row-${w.id}">
+          <td>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="album-art ${coverClass(w.id.length)}" style="background: var(--accent-grad);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </div>
+              <div class="track-info">
+                <span class="track-title">${w.name}</span>
+                <span class="track-artist mono">${w.id}</span>
+              </div>
+            </div>
+          </td>
+          <td class="mono">${w.tracks}</td>
+          <td><span class="badge badge-have">${w.have}</span></td>
+          <td><span class="badge badge-missing">${w.missing}</span></td>
+          <td><span class="badge badge-possible">${w.possible}</span></td>
+          <td class="muted mono">${w.date}</td>
+          <td><span class="badge ${w.status === 'processed' ? 'badge-accent' : 'badge-neutral'}">${w.status}</span></td>
+          <td>
+            <div class="dropdown">
+              <button class="icon-btn" data-dropdown-toggle aria-label="Actions">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+              </button>
+              <div class="dropdown-menu">
+                <div class="dropdown-item">View results</div>
+                <div class="dropdown-item">Re-compare</div>
+                <div class="dropdown-item">Duplicate</div>
+                <div class="dropdown-sep"></div>
+                <div class="dropdown-item" style="color: var(--missing)">Delete</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+      document.getElementById('wanted-history-tbody').innerHTML = body;
+    });
+  </script>
+</body>
+</html>

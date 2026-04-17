@@ -1,5 +1,12 @@
 # DJ Library — PRD
 
+## ⚠️ SCOPE LOCK — FRONTEND-ONLY PROJECT
+**This project is strictly frontend. No backend, no API, no database, no server logic will be implemented here.**
+- All data stays fictional / static / localStorage-only
+- Integrations, persistence, auth, scanners and matching engines are OUT of scope
+- Main agent must NEVER propose or implement backend code, APIs, MongoDB models, or server endpoints
+- Future backend work (if any) will be done in a different project/environment by the user
+
 ## Problem Statement
 Static frontend (HTML/CSS/JS only — no backend) for a self-hosted DJ music library management app. Users must be able to preview browsing a music library, organizing metadata, importing "wanted lists" in `Artist - Track` format, and visualizing comparisons as HAVE / MISSING / POSSIBLE MATCH. Visual direction: modern, premium musical app inspired by Tunein-style dashboards.
 
@@ -52,19 +59,20 @@ Static frontend (HTML/CSS/JS only — no backend) for a self-hosted DJ music lib
 
 ## Prioritized Backlog
 
-### P0 — Backend integration (future phase)
-- File scanner / indexer (scan folders, read ID3)
-- Real CRUD on tracks / crates / wanted-lists / matches
-- Real matching engine (exact / clean / fuzzy with configurable thresholds)
+### Frontend enhancements (the only things in scope here)
+- Auto-switch Dark/Light based on `prefers-color-scheme` or time of day
+- Search bar full interactivity (client-side filter across the static dataset)
+- DnD reorder in crates (UI only, no persistence)
+- More wanted-list templates / visual states (empty, error, large list)
+- Shareable setlist preview page (static, read-only)
 
-### P1
-- Authentication (JWT or Emergent-managed auth)
-- Import from Rekordbox / Traktor / Serato XML
-- Export Matches / Wanted Lists as CSV, JSON, Rekordbox XML
-- Multi-user / shared libraries
-
-### P2
-- Waveform preview player
-- Smart crates (rules-based)
-- Public set-list sharing page
-- DnD reordering of crates and tracks
+### OUT OF SCOPE (will NOT be built in this project)
+- ❌ Backend of any kind (FastAPI, Node, etc.)
+- ❌ MongoDB / database / persistence
+- ❌ Real file scanners / ID3 readers
+- ❌ Real matching engines (exact/clean/fuzzy)
+- ❌ Authentication (JWT, OAuth, Google, etc.)
+- ❌ Rekordbox/Traktor/Serato imports that require parsing
+- ❌ Any API endpoint (`/api/...`)
+- ❌ Player/audio playback logic
+- ❌ Stripe, payments, subscriptions

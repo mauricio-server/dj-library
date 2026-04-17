@@ -18,49 +18,66 @@
       <header class="topbar" id="topbar"></header>
       <div class="page" data-testid="page-dashboard">
 
-        <!-- Hero -->
+        <!-- ========== COMMAND CENTER HEADER ========== -->
         <div class="page-hero anim-up">
           <div>
-            <h2>Good evening, DJ Producer</h2>
-            <p class="sub">Your library feels sharp tonight · 1,284 matches across 12 wanted lists. Ready to curate your next set?</p>
-          </div>
-          <div class="kit-row">
-            <button class="btn btn-secondary" data-testid="action-scan">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-              <span>Scan Library</span>
-            </button>
-            <button class="btn btn-primary" data-testid="action-new-list" onclick="location.href='wanted-list.html'">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              <span>New Wanted List</span>
-            </button>
+            <div style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:10px;">
+              Command Center
+            </div>
+            <h2>DJ Library Dashboard</h2>
+            <p class="sub">Your command center for library organization, recent imports, and wanted list comparison. Monitor collection health and jump straight into the workflows you use most.</p>
           </div>
         </div>
 
-        <!-- Metrics -->
-        <div class="metrics" id="metrics-grid"></div>
+        <!-- Operational status strip -->
+        <div class="command-strip anim-up anim-up-1" data-testid="command-strip" id="command-strip"></div>
 
-        <!-- Quick Actions -->
-        <div class="card anim-up anim-up-2" style="margin-bottom: 18px;">
+        <!-- Primary actions -->
+        <div class="action-row anim-up anim-up-2" data-testid="primary-actions">
+          <button class="btn btn-primary" data-testid="action-scan">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span>Scan Library</span>
+          </button>
+          <button class="btn btn-secondary" data-testid="action-import" onclick="location.href='wanted-list.html'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Import Wanted List</span>
+          </button>
+          <button class="btn btn-secondary" data-testid="action-matches" onclick="location.href='matches.html'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>Review Matches</span>
+          </button>
+          <button class="btn btn-secondary" data-testid="action-tracks" onclick="location.href='tracks.html'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <span>Open Tracks</span>
+          </button>
+        </div>
+
+        <!-- ========== METRIC CARDS (strategic overview) ========== -->
+        <div class="metrics anim-up anim-up-3" id="metrics-grid"></div>
+
+        <!-- ========== QUICK ACTIONS ========== -->
+        <div class="card anim-up anim-up-3" style="margin-bottom: 18px;">
           <div class="card-header">
             <div>
               <h3>Quick Actions</h3>
-              <div class="sub">Fast paths into the most used workflows</div>
+              <div class="sub">Jump into the workflows you use most — one click away.</div>
             </div>
           </div>
           <div class="quick-actions" id="quick-actions"></div>
         </div>
 
-        <!-- Main grid: table + top genres + activity -->
-        <div class="grid-2 anim-up anim-up-3" style="margin-bottom: 18px;">
+        <!-- ========== RECENT TRACKS + LATEST MATCHES ========== -->
+        <div class="grid-2 anim-up anim-up-4" style="margin-bottom: 18px;">
           <div class="stack">
+            <!-- Recent tracks -->
             <div class="card" style="padding: 0;">
               <div class="table-toolbar">
                 <div>
                   <h3 style="font-size:15px;font-weight:600;">Recent Tracks</h3>
-                  <div style="font-size:12px;color:var(--text-dim);margin-top:2px;">Last 8 added to your library</div>
+                  <div style="font-size:12px;color:var(--text-dim);margin-top:2px;">Last 8 added · synced from your library folder</div>
                 </div>
                 <div class="tt-spacer"></div>
-                <a href="tracks.html" class="btn btn-ghost btn-sm">View all →</a>
+                <a href="tracks.html" class="btn btn-ghost btn-sm">Open library →</a>
               </div>
               <div class="table-scroll">
                 <table class="data-table">
@@ -78,12 +95,12 @@
               </div>
             </div>
 
-            <!-- Tracks per decade -->
+            <!-- Decade distribution -->
             <div class="card">
               <div class="card-header">
                 <div>
                   <h3>Tracks per Decade</h3>
-                  <div class="sub">Library distribution over time</div>
+                  <div class="sub">How your collection spreads across music history</div>
                 </div>
                 <span class="badge badge-accent">4,837 total</span>
               </div>
@@ -97,7 +114,7 @@
               <div class="card-header">
                 <div>
                   <h3>Latest Matches</h3>
-                  <div class="sub">From recent comparisons</div>
+                  <div class="sub">Resolution from your most recent comparison runs</div>
                 </div>
                 <a href="matches.html" class="btn btn-ghost btn-sm">All →</a>
               </div>
@@ -109,7 +126,7 @@
               <div class="card-header">
                 <div>
                   <h3>Top Genres</h3>
-                  <div class="sub">By number of tracks</div>
+                  <div class="sub">Ranked by track count across your collection</div>
                 </div>
               </div>
               <div class="top-list" id="top-genres"></div>
@@ -117,14 +134,26 @@
           </div>
         </div>
 
-        <!-- Recent activity -->
-        <div class="card anim-up anim-up-4">
+        <!-- ========== LIBRARY HEALTH ========== -->
+        <div class="card anim-up anim-up-5" style="margin-bottom: 18px;" data-testid="library-health">
+          <div class="card-header">
+            <div>
+              <h3>Library Health</h3>
+              <div class="sub">Metadata completeness, duplicate candidates and pending review items.</div>
+            </div>
+            <span class="badge badge-accent">Overall 94%</span>
+          </div>
+          <div class="health-grid" id="health-grid"></div>
+        </div>
+
+        <!-- ========== RECENT ACTIVITY ========== -->
+        <div class="card anim-up anim-up-5">
           <div class="card-header">
             <div>
               <h3>Recent Activity</h3>
-              <div class="sub">All events across your library</div>
+              <div class="sub">Imports, matches, scans and edits — chronological.</div>
             </div>
-            <button class="btn btn-ghost btn-sm">View log</button>
+            <button class="btn btn-ghost btn-sm">View full log</button>
           </div>
           <div class="activity-list" id="activity-feed"></div>
         </div>
@@ -135,18 +164,36 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      DJLayout.mount({ active: 'dashboard', title: 'Dashboard', crumb: 'Home · Overview' });
+      DJLayout.mount({ active: 'dashboard', title: 'Dashboard', crumb: 'Home · Command Center' });
       const I = DJ_ICONS;
 
-      // Metrics
-      const m = DJ_METRICS;
+      // -------- COMMAND STRIP (operational summary) --------
+      const pills = [
+        { label: 'Library',       value: '4,837 tracks · 812 artists', icon: I.music,   status: '' },
+        { label: 'Last scan',     value: '3h ago · 142 new files',     icon: I.refresh, status: 'ok' },
+        { label: 'Wanted queue',  value: '12 lists · 1 pending',       icon: I.list,    status: '' },
+        { label: 'Health',        value: '94% metadata complete',      icon: I.check,   status: 'ok' },
+      ];
+      document.getElementById('command-strip').innerHTML = pills.map(p => `
+        <div class="command-pill ${p.status}">
+          <div class="pill-icon">${p.icon()}</div>
+          <div class="pill-body">
+            <div class="pill-label">${p.label}</div>
+            <div class="pill-value">${p.value}</div>
+          </div>
+        </div>
+      `).join('');
+
+      // -------- METRICS (8 strategic cards) --------
       const cells = [
-        { label: 'Total Tracks',   value: m.tracks.toLocaleString(), trend: '+142 this week', up: true, icon: I.music, testid: 'metric-tracks' },
-        { label: 'Artists',        value: m.artists, trend: '+8', up: true, icon: I.headphones, testid: 'metric-artists' },
-        { label: 'Matches',        value: m.matched.toLocaleString(), trend: '+24%', up: true, icon: I.check, testid: 'metric-matches' },
-        { label: 'Missing',        value: m.missing, trend: '-12', up: false, icon: I.x, testid: 'metric-missing' },
-        { label: 'Possible Match', value: m.possible, trend: 'review queue', up: true, icon: I.zap, testid: 'metric-possible' },
-        { label: 'Library Size',   value: m.size, trend: '24 GB free', up: true, icon: I.folder, testid: 'metric-size' },
+        { label: 'Total Tracks',      value: '4,837',      trend: '+142 this week',   up: true,  icon: I.music,     testid: 'metric-tracks' },
+        { label: 'Artists',           value: '812',        trend: '+8 new',           up: true,  icon: I.headphones,testid: 'metric-artists' },
+        { label: 'Genres',            value: '24',         trend: 'stable',           up: true,  icon: I.folder,    testid: 'metric-genres' },
+        { label: 'Wanted Lists',      value: '12',         trend: '1 pending import', up: true,  icon: I.list,      testid: 'metric-wanted' },
+        { label: 'Recent Matches',    value: '1,284',      trend: '+24% vs last wk',  up: true,  icon: I.check,     testid: 'metric-matches' },
+        { label: 'Missing Metadata',  value: '38',         trend: 'needs review',     up: false, icon: I.zap,       testid: 'metric-missing-meta' },
+        { label: 'Duplicates Flagged',value: '34',         trend: '6.2 GB wasted',    up: false, icon: I.more || I.folder, testid: 'metric-duplicates' },
+        { label: 'Last Scan',         value: '3h ago',     trend: 'completed',        up: true,  icon: I.refresh,   testid: 'metric-last-scan' },
       ];
       document.getElementById('metrics-grid').innerHTML = cells.map(c => `
         <div class="metric" data-testid="${c.testid}">
@@ -157,12 +204,14 @@
         </div>
       `).join('');
 
-      // Quick actions
+      // -------- QUICK ACTIONS (6 workflows) --------
       document.getElementById('quick-actions').innerHTML = [
-        { title: 'Import Wanted List', sub: 'Paste or upload a TXT', icon: I.upload, href: 'wanted-list.html', testid: 'qa-import' },
-        { title: 'Browse Tracks',      sub: 'Filter & organize',     icon: I.music,  href: 'tracks.html',      testid: 'qa-browse' },
-        { title: 'Review Matches',     sub: '147 missing · 96 possible', icon: I.target || I.zap, href: 'matches.html', testid: 'qa-review' },
-        { title: 'Manage Crates',      sub: '18 crates',             icon: I.folder, href: 'crates.html',      testid: 'qa-crates' },
+        { title: 'Scan Library',       sub: 'Index new files in /music',        icon: I.refresh, href: '#',                 testid: 'qa-scan' },
+        { title: 'Import Wanted List', sub: 'Paste Artist - Track lines',       icon: I.upload,  href: 'wanted-list.html',  testid: 'qa-import' },
+        { title: 'Open Tracks',        sub: 'Browse 4,837 indexed tracks',      icon: I.music,   href: 'tracks.html',       testid: 'qa-browse' },
+        { title: 'Review Matches',     sub: '147 missing · 96 possible',        icon: I.zap,     href: 'matches.html',      testid: 'qa-review' },
+        { title: 'Check Duplicates',   sub: '34 flagged · 6.2 GB wasted',       icon: I.folder,  href: 'duplicates.html',   testid: 'qa-duplicates' },
+        { title: 'Recent Imports',     sub: '6 lists this week',                icon: I.list,    href: 'wanted-list.html',  testid: 'qa-recent' },
       ].map(q => `
         <a href="${q.href}" class="qa" data-testid="${q.testid}">
           <div class="qa-icon">${q.icon()}</div>
@@ -173,7 +222,7 @@
         </a>
       `).join('');
 
-      // Recent tracks (first 8)
+      // -------- RECENT TRACKS TABLE --------
       document.getElementById('recent-tracks-body').innerHTML = DJ_TRACKS.slice(0, 8).map(t => {
         const cover = coverUrl(t.id);
         const grad = coverClass(t.id);
@@ -196,7 +245,7 @@
         `;
       }).join('');
 
-      // Decade chart
+      // -------- DECADE CHART --------
       const maxDec = Math.max(...DJ_DECADES.map(d => d.value));
       document.getElementById('decade-chart').innerHTML = DJ_DECADES.map(d => {
         const h = Math.round((d.value / maxDec) * 100);
@@ -208,7 +257,7 @@
         `;
       }).join('');
 
-      // Latest matches
+      // -------- LATEST MATCHES --------
       document.getElementById('latest-matches').innerHTML = DJ_MATCHES.slice(0, 6).map(m => {
         const cls = m.status === 'have' ? 'have' : m.status === 'missing' ? 'missing' : 'possible';
         const ico = m.status === 'have' ? I.check() : m.status === 'missing' ? I.x() : I.zap();
@@ -224,7 +273,7 @@
         `;
       }).join('');
 
-      // Top genres
+      // -------- TOP GENRES --------
       const maxG = Math.max(...DJ_GENRES.map(g => g.count));
       document.getElementById('top-genres').innerHTML = DJ_GENRES.slice(0, 6).map((g, i) => `
         <div class="top-row">
@@ -235,7 +284,28 @@
         </div>
       `).join('');
 
-      // Activity feed
+      // -------- LIBRARY HEALTH (6 indicators) --------
+      const health = [
+        { label: 'Metadata Complete', value: '94%', pct: 94, sub: '4,546 of 4,837 tracks have full tags', level: 'ok'     },
+        { label: 'BPM Tagged',        value: '87%', pct: 87, sub: '4,198 of 4,837 · 639 missing BPM',      level: 'ok'     },
+        { label: 'Key Tagged',        value: '76%', pct: 76, sub: '3,676 of 4,837 · 1,161 missing key',    level: 'warn'   },
+        { label: 'Artwork Present',   value: '91%', pct: 91, sub: '4,401 of 4,837 tracks have cover art',  level: 'ok'     },
+        { label: 'Unmatched Wanted',  value: '147', pct: 22, sub: 'Across your last 12 wanted lists',      level: 'danger' },
+        { label: 'Duplicate Candidates', value: '34', pct: 12, sub: '52 extra copies · 6.2 GB redundant', level: 'warn'   },
+      ];
+      document.getElementById('health-grid').innerHTML = health.map(h => `
+        <div class="health-item">
+          <div class="h-head">
+            <span class="h-label">${h.label}</span>
+            <span class="h-pct">${h.pct}%</span>
+          </div>
+          <div class="h-value">${h.value}</div>
+          <div class="h-progress"><div class="h-progress-fill ${h.level === 'ok' ? '' : h.level}" style="width:${h.pct}%"></div></div>
+          <div class="h-sub">${h.sub}</div>
+        </div>
+      `).join('');
+
+      // -------- ACTIVITY FEED --------
       document.getElementById('activity-feed').innerHTML = DJ_ACTIVITY.map(a => {
         const cls = a.type === 'have' ? 'have' : a.type === 'missing' ? 'missing' : a.type === 'possible' ? 'possible' : '';
         const ico = a.icon === 'check' ? I.check() : a.icon === 'x' ? I.x() : a.icon === 'zap' ? I.zap() : a.icon === 'upload' ? I.upload() : I.refresh();

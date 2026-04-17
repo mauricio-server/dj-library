@@ -198,6 +198,106 @@
 /* Modal backdrop lighter */
 [data-mode="light"] .modal-backdrop { background: rgba(15, 15, 20, 0.45); }
 
+/* ---------- Command center (dashboard hero operational strip) ---------- */
+.command-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.command-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.command-pill:hover { border-color: var(--border-strong); }
+.command-pill .pill-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: var(--accent-grad-soft);
+  display: grid; place-items: center;
+  color: var(--accent-2);
+  flex-shrink: 0;
+}
+.command-pill .pill-icon svg { width: 16px; height: 16px; }
+.command-pill .pill-body { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.command-pill .pill-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+}
+.command-pill .pill-value {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--text);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.command-pill.ok   .pill-icon { background: var(--have-bg);     color: var(--have); }
+.command-pill.warn .pill-icon { background: var(--possible-bg); color: var(--possible); }
+
+/* Primary action row on dashboards */
+.action-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.action-row .btn { flex: 0 0 auto; }
+@media (max-width: 640px) {
+  .action-row .btn { flex: 1 1 calc(50% - 5px); justify-content: center; }
+}
+
+/* Library health grid */
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.health-item {
+  padding: 16px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: border-color var(--t-fast) var(--ease);
+}
+.health-item:hover { border-color: var(--border-strong); }
+.health-item .h-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.health-item .h-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+.health-item .h-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.health-item .h-value {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 8px;
+  letter-spacing: -0.01em;
+}
+.health-item .h-progress { height: 6px; background: var(--bg-elevated); border-radius: 999px; margin-top: 10px; overflow: hidden; }
+.health-item .h-progress-fill { height: 100%; background: var(--accent-grad); border-radius: 999px; transition: width var(--t-slow) var(--ease); }
+.health-item .h-progress-fill.warn   { background: linear-gradient(90deg, #eab308 0%, #f97316 100%); }
+.health-item .h-progress-fill.danger { background: linear-gradient(90deg, #f97316 0%, #ef4444 100%); }
+.health-item .h-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 8px; line-height: 1.45; }
+
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
